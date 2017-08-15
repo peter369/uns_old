@@ -1,0 +1,72 @@
+#tabs-titles {
+    float: left;
+    //margin-right:10px;
+    height: 30px;
+    margin-left: 30px;
+}
+
+#tabs-titles li {
+    cursor: pointer;
+    height: 25px;
+    line-height: 25px;
+    background-color: #E6E6E6;
+    margin-bottom: 3px;
+    width: 140px;
+    text-align: left;
+    //z-index: 5;
+    padding: 5px;
+    //font-family: 'Bitstream Vera Sans', Verdana, Tahoma, 'Sans serif';
+    font-size: 11px;
+    color: #555;
+    font-weight: bold;
+}
+
+#tabs-titles li.current {
+    font-weight: bolder;
+    background-color: #fff;
+    //border-bottom: 1px solid #fff;
+    color: black;
+}
+
+
+
+#tabs-contents {
+    //background:#F2F2F2;
+    margin-left: 20%;
+    //padding:5px;
+    width: auto;
+    text-align: center;
+    //border-top: 1px solid #d4d4d1;
+    //border-right: 1px solid #d4d4d1;
+    //border-left: 1px solid #d4d4d1;
+    //border-bottom: 1px solid #d4d4d1;
+}
+
+#tabs-contents li {
+    display: none;
+
+}
+
+#tabs-contents th {
+    
+    text-align: center;
+    font-weight: bolder;
+}
+
+#tabs-contents li:first-child {
+    display: block;
+    /* first one content displayed by default */
+}
+
+#table-totales {}
+
+#table-totales th {
+    height: 30px;
+    text-align: center;
+
+}
+
+#table-totales tr:nth-child(even) {
+    background-color: #F1F1F1
+}
+
