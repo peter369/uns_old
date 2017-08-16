@@ -90,12 +90,16 @@ class PluginUnsTicketLocalization extends CommonGLPI
         $pauseRejecucion   = self::pauseReasons($item, $trabajo1, $trabajo2);
         $pauseRretorno     = self::pauseReasons($item, $viajere1, $viajere2);
 
+        //prueba de tecnicos
+
+        //self::GetTechnician($item);
+        $listaTecnicos = self::GetTechnician($item);
+
         echo "<!DOCTYPE html>
         <html lang='en'>
         <head>
         <meta charset='UTF-8'>
         <link rel='stylesheet' type='text/css' href='/plugins/uns/css/tabs.css' media='screen' />
-
         <title>Document</title>
         <script type=\'text/javascript\'>
         var tabs = $('#tabs-titles li'); //grab tabs
@@ -112,7 +116,7 @@ class PluginUnsTicketLocalization extends CommonGLPI
         </head>
         <body>
         <div style='text-align:left; margin-left: 30px;margin-bottom: 10px;'>
-        <label>Técnico <select></select></label>
+        <label>Técnico: <select>$listaTecnicos</select></label>
         </div>
 
         <ul id='tabs-titles'>
@@ -403,6 +407,34 @@ class PluginUnsTicketLocalization extends CommonGLPI
 
         return $str;
 
+    }
+    public static function GetTechnician(CommonGLPI $item)
+    {
+        global $DB;
+        $ticket = $item->getID();
+
+        $sql="SELECT *
+        FROM glpi_plugin_uns_productiontickets T1
+        INNER JOIN glpi_users T2 ON T1.user_id = t2.id
+        WHERE tickets_id=$ticket";
+        
+                $result = $DB->query($sql);
+                while ($row = $DB->fetch_assoc($result)) {
+                    $nombre[]    = $row['firstname'];
+                    $apellido[]  = $row['realname'];
+                }
+
+       // return $nombre[] + $apellido[];
+
+       //for para recorrer el array de tecnicos y mostrarlo como opciones de un select
+
+       for ($i = 0; $i < count($nombre); $i++) {
+        $str .= "<option value='$nombre[$i] $apellido[$i]'>$nombre[$i] $apellido[$i]</option>";
+        //echo "<option value='$motivo[$i]'>$motivo[$i]</option>";
+        }
+        return $str;
+    //    echo "$nombre[1] $apellido[1]";
+    //    echo "$ticket";
     }
 
 }
