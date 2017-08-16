@@ -1,375 +1,173 @@
-<!DOCTYPE html>
-<html lang="en">
-
+echo "<!DOCTYPE html>
+<html lang='en'>
 <head>
-  <meta charset="utf-8">
-  <link href="/plugins/uns/css/tabs.css" media="screen" rel="stylesheet" type="text/css" />
-  <title>
-    Document
-  </title>
-  <script type="\'text/javascript\'">
-    var tabs = $('#tabs-titles li'); //grab tabs
-    var contents = $('#tabs-contents li'); //grab contents
+<meta charset='UTF-8'>
+<link rel='stylesheet' type='text/css' href='/plugins/uns/css/tabs.css' media='screen' />
 
-    tabs.bind('click', function() {
-      contents.hide(); //hide all contents
-      tabs.removeClass('current'); //remove 'current' classes
-      $(contents[$(this).index()]).show(); //show tab content that matches tab title index
-      $(this).addClass('current'); //add current class on clicked tab title
-    });
-  </script>
-  </meta>
+<title>Document</title>
+<script type=\'text/javascript\'>
+var tabs = $('#tabs-titles li'); //grab tabs
+var contents = $('#tabs-contents li'); //grab contents
+
+tabs.bind('click',function(){
+contents.hide(); //hide all contents
+tabs.removeClass('current'); //remove 'current' classes
+$(contents[$(this).index()]).show(); //show tab content that matches tab title index
+$(this).addClass('current'); //add current class on clicked tab title
+});
+</script>
+
 </head>
-
 <body>
-  <div></div>
-  <ul id="tabs-titles">
-    <li class="current">
-      <!-- default (on page load), first one is currently displayed -->
-      Preparación
-    </li>
-    <li>
-      Viaje de ida
-    </li>
-    <li>
-      Ejecución de trabajo
-    </li>
-    <li>
-      Viaje de retorno
-    </li>
-    <li>
-      Tiempo total
-    </li>
-  </ul>
-  <ul id="tabs-contents">
-    <li>
-      <div class="content">
-        <table style="width:100%">
-          <tr>
-            <th>
-              Inicio
-            </th>
-            <th>
-              Fin
-            </th>
-            <th>
-              Pausas:
-              <select>
-                                    $pauseRpreparacion
-                                </select>
-            </th>
-            <th>
-              Tiempo empleado
-            </th>
-          </tr>
-          <tr>
-            <td>
-              $preparacion_i
-            </td>
-            <td>
-              $preparacion_f
-            </td>
-            <td>
-              $pausas_1
-            </td>
-            <td>
-              $t_preparacion
-            </td>
-          </tr>
-        </table>
-        <p>
-          $geo_preparacion
-        </p>
-      </div>
-    </li>
-  </ul>
-</body>
 
+<label id='select-tecnico' style='text-align:left'>Técnico <select></select></label>
+
+
+<ul id='tabs-titles'>
+<li class='current'> <!-- default (on page load), first one is currently displayed -->
+Preparación
+</li>
+<li>
+Viaje de ida
+</li>
+<li>
+Ejecución de trabajo
+</li>
+<li>
+Viaje de retorno
+</li>
+<li>
+Tiempo total
+</li>
+
+</ul>
+<ul id='tabs-contents'>
+<li>
+<div class='content'>
+<table style='width:100%'>
+<tr>
+<th>Inicio</th>
+<th>Fin</th>
+<th>Pausas: <select>  $pauseRpreparacion</select></th>
+<th>Tiempo empleado</th>
+</tr>
+<tr>
+<td>$preparacion_i</td>
+<td>$preparacion_f</td>
+<td>$pausas_1</td>
+<td>$t_preparacion</td>
+</tr>
+</table>
+<p>$geo_preparacion</p>
+</div></div>
+</li>
+<li>
+<div class='content'><table style='width:100%'>
+<tr>
+<th>Inicio</th>
+<th>Fin</th>
+<th>Pausas: <select>  $pauseRviajeida</select></th>
+<th>Tiempo empleado</th>
+</tr>
+<tr>
+<td>$viaje_ida_i</td>
+<td>$viaje_ida_f</td>
+<td>$pausas_2</td>
+<td>$t_viaje_ida</td>
+</tr>
+</table>
+<p>$geo_viaje_ida</p>
+</div></div>
+</li>
+<li>
+<div class='content'>
+<table style='width:100%'>
+<tr>
+<th>Inicio</th>
+<th>Fin</th>
+<th>Pausas: <select>  $pauseRejecucion</select></th>
+<th>Tiempo empleado</th>
+</tr>
+<tr>
+<td>$trabajo_i</td>
+<td>$trabajo_f</td>
+<td>$pausas_3</td>
+<td>$t_trabajo</td>
+</tr>
+</table>
+<p>$geo_trabajo</p>
+</div>
+</div>
+</li>
+<li>
+<div class='content'>
+<table style='width:100%'>
+<tr>
+<th>Inicio</th>
+<th>Fin</th>
+<th>Pausas: <select>  $pauseRretorno</select></th>
+<th>Tiempo empleado</th>
+</tr>
+<tr>
+<td>$viaje_retorno_i</td>
+<td>$viaje_retorno_f</td>
+<td>$pausas_4</td>
+<td>$t_viaje_retorno</td>
+</tr>
+</table>
+<p>$geo_viaje_retorno</p>
+</div>
+</div>
+</li>
+
+<li>
+<div class='content'>
+<table id='table-totales', style='width:100%'>
+<caption><center><h2>Informe de tiempo empleado</h2></caption>
+    <tr>
+        <th></th>
+        <td><b>Inicio</td><td><b>Fin</td><td><b>Pausas</td><td><b>Total</td>
+    </tr>
+    <tr>
+        <th><b>Preparación:</th>
+        <td>$preparacion_i</td><td>$preparacion_f</td><td>$pausas_1</td><td>$t_preparacion</td>
+    </tr>
+    <tr>
+        <th><b>Viaje de ida:</th>
+        <td>$viaje_ida_i</td><td>$viaje_ida_f</td><td>$pausas_2</td><td>$t_viaje_ida</td>
+    </tr>
+    <tr>
+        <th><b>Ejecución de trabajo:</th>
+        <td>$trabajo_i</td><td>$trabajo_f</td><td>$pausas_3</td><td>$t_trabajo</td>
+    </tr>
+    <tr>
+        <th><b>Viaje de retorno:</th>
+        <td>$viaje_retorno_i</td><td>$viaje_retorno_f</td><td>$pausas_4</td><td>$t_viaje_retorno</td>
+    </tr>
+
+
+
+
+    <tr>
+        <th><b>Tiempo total pausas:</th>
+        <td></td><td></td><td><b>$t_total_pausas</td><td></td>
+    </tr>
+    <tr>
+        <th><b>Tiempo real trabajado:</th>
+        <td></td><td></td><td></td><td><b>$t_total_trabajado</td>
+    </tr>
+    <tr>
+        <th><b>Tiempo total:</th>
+        <td></td><td></td><td></td><td><b>$t_total_total</td>
+    </tr>
+
+</table>
+
+</div>
+</div>
+</li>
+</ul>
+
+
+</body>
 </html>
-<li>
-  <div class="content">
-    <table style="width:100%">
-      <tr>
-        <th>
-          Inicio
-        </th>
-        <th>
-          Fin
-        </th>
-        <th>
-          Pausas:
-          <select>
-                        $pauseRviajeida
-                    </select>
-        </th>
-        <th>
-          Tiempo empleado
-        </th>
-      </tr>
-      <tr>
-        <td>
-          $viaje_ida_i
-        </td>
-        <td>
-          $viaje_ida_f
-        </td>
-        <td>
-          $pausas_2
-        </td>
-        <td>
-          $t_viaje_ida
-        </td>
-      </tr>
-    </table>
-    <p>
-      $geo_viaje_ida
-    </p>
-  </div>
-</li>
-<li>
-  <div class="content">
-    <table style="width:100%">
-      <tr>
-        <th>
-          Inicio
-        </th>
-        <th>
-          Fin
-        </th>
-        <th>
-          Pausas:
-          <select>
-                        $pauseRejecucion
-                    </select>
-        </th>
-        <th>
-          Tiempo empleado
-        </th>
-      </tr>
-      <tr>
-        <td>
-          $trabajo_i
-        </td>
-        <td>
-          $trabajo_f
-        </td>
-        <td>
-          $pausas_3
-        </td>
-        <td>
-          $t_trabajo
-        </td>
-      </tr>
-    </table>
-    <p>
-      $geo_trabajo
-    </p>
-  </div>
-</li>
-<li>
-  <div class="content">
-    <table style="width:100%">
-      <tr>
-        <th>
-          Inicio
-        </th>
-        <th>
-          Fin
-        </th>
-        <th>
-          Pausas:
-          <select>
-                        $pauseRretorno
-                    </select>
-        </th>
-        <th>
-          Tiempo empleado
-        </th>
-      </tr>
-      <tr>
-        <td>
-          $viaje_retorno_i
-        </td>
-        <td>
-          $viaje_retorno_f
-        </td>
-        <td>
-          $pausas_4
-        </td>
-        <td>
-          $t_viaje_retorno
-        </td>
-      </tr>
-    </table>
-    <p>
-      $geo_viaje_retorno
-    </p>
-  </div>
-</li>
-<li>
-  <div class="content">
-    <table ,="" id="table-totales" style="width:100%">
-      <caption>
-        <center>
-          <h2>
-                        Informe de tiempo empleado
-                    </h2>
-        </center>
-      </caption>
-      <tr>
-        <th>
-        </th>
-        <td>
-          <b>
-                        Inicio
-                    </b>
-        </td>
-        <td>
-          <b>
-                        Fin
-                    </b>
-        </td>
-        <td>
-          <b>
-                        Pausas
-                    </b>
-        </td>
-        <td>
-          <b>
-                        Total
-                    </b>
-        </td>
-      </tr>
-      <tr>
-        <th>
-          <b>
-                        Preparación:
-                    </b>
-        </th>
-        <td>
-          $preparacion_i
-        </td>
-        <td>
-          $preparacion_f
-        </td>
-        <td>
-          $pausas_1
-        </td>
-        <td>
-          $t_preparacion
-        </td>
-      </tr>
-      <tr>
-        <th>
-          <b>
-                        Viaje de ida:
-                    </b>
-        </th>
-        <td>
-          $viaje_ida_i
-        </td>
-        <td>
-          $viaje_ida_f
-        </td>
-        <td>
-          $pausas_2
-        </td>
-        <td>
-          $t_viaje_ida
-        </td>
-      </tr>
-      <tr>
-        <th>
-          <b>
-                        Ejecución de trabajo:
-                    </b>
-        </th>
-        <td>
-          $trabajo_i
-        </td>
-        <td>
-          $trabajo_f
-        </td>
-        <td>
-          $pausas_3
-        </td>
-        <td>
-          $t_trabajo
-        </td>
-      </tr>
-      <tr>
-        <th>
-          <b>
-                        Viaje de retorno:
-                    </b>
-        </th>
-        <td>
-          $viaje_retorno_i
-        </td>
-        <td>
-          $viaje_retorno_f
-        </td>
-        <td>
-          $pausas_4
-        </td>
-        <td>
-          $t_viaje_retorno
-        </td>
-      </tr>
-      <tr>
-        <th>
-          <b>
-                        Tiempo total pausas:
-                    </b>
-        </th>
-        <td>
-        </td>
-        <td>
-        </td>
-        <td>
-          <b>
-                        $t_total_pausas
-                    </b>
-        </td>
-        <td>
-        </td>
-      </tr>
-      <tr>
-        <th>
-          <b>
-                        Tiempo real trabajado:
-                    </b>
-        </th>
-        <td>
-        </td>
-        <td>
-        </td>
-        <td>
-        </td>
-        <td>
-          <b>
-                        $t_total_trabajado
-                    </b>
-        </td>
-      </tr>
-      <tr>
-        <th>
-          <b>
-                        Tiempo total:
-                    </b>
-        </th>
-        <td>
-        </td>
-        <td>
-        </td>
-        <td>
-        </td>
-        <td>
-          <b>
-                        $t_total_total
-                    </b>
-        </td>
-      </tr>
-    </table>
-  </div>
-</li>
