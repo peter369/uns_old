@@ -95,6 +95,7 @@ class PluginUnsTicketLocalization extends CommonGLPI
         <head>
         <meta charset='UTF-8'>
         <link rel='stylesheet' type='text/css' href='/plugins/uns/css/tabs.css' media='screen' />
+
         <title>Document</title>
         <script type=\'text/javascript\'>
         var tabs = $('#tabs-titles li'); //grab tabs
@@ -110,9 +111,9 @@ class PluginUnsTicketLocalization extends CommonGLPI
 
         </head>
         <body>
+        <div style='text-align:left; margin-left: 30px;margin-bottom: 10px;'>
         <label>Técnico <select></select></label>
-        <label>Aqui va el técnico</label>
-
+        </div>
 
         <ul id='tabs-titles'>
         <li class='current'> <!-- default (on page load), first one is currently displayed -->
