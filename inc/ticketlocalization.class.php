@@ -104,7 +104,7 @@ class PluginUnsTicketLocalization extends CommonGLPI
         <html lang='en'>
         <head>
         <meta charset='UTF-8'>
-        <link rel='stylesheet' type='text/css' href='/plugins/uns/css/tabs.css' media='screen' />
+        <link rel='stylesheet' type='text/css' href='../plugins/uns/css/tabs.css' media='screen' />
         <title>Document</title>
         
         
@@ -117,7 +117,7 @@ class PluginUnsTicketLocalization extends CommonGLPI
                 
                 $.ajax({
                     type: 'POST',
-                    url: '/plugins/uns/front/ticketlocalization.form.php',
+                    url: '../plugins/uns/front/ticketlocalization.form.php',
                     
                     data: {var_tecnico2: tecnico},
                     success: function(result)
