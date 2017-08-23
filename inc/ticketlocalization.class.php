@@ -14,6 +14,9 @@ class PluginUnsTicketLocalization extends CommonGLPI
 
     public static function displayTabContentForItem(CommonGLPI $item, $tabnum = 1, $withtemplate = 0)
     {
+       
+        
+
         $coordenadas1 = "geo_preparacion_i";
         $coordenadas2 = "geo_preparacion_f";
         $coordenadas3 = "geo_viaje_ida_i";
@@ -95,12 +98,46 @@ class PluginUnsTicketLocalization extends CommonGLPI
         //self::GetTechnician($item);
         $listaTecnicos = self::GetTechnician($item);
 
+        $test1=self::RecibirDatos($tecnico);
+
         echo "<!DOCTYPE html>
         <html lang='en'>
         <head>
         <meta charset='UTF-8'>
         <link rel='stylesheet' type='text/css' href='/plugins/uns/css/tabs.css' media='screen' />
         <title>Document</title>
+        
+        
+        <script type=\'text/javascript\'>
+        $(document).ready(function(){
+            $('#select_tecnicos').change(function(){
+                var tecnico = document.getElementById('select_tecnicos').value;
+                //alert('Selected value is : ' + tecnico);
+        
+                
+                $.ajax({
+                    type: 'POST',
+                    url: '/plugins/uns/front/ticketlocalization.form.php',
+                    
+                    data: {var_tecnico2: tecnico},
+                    success: function(result)
+                    {
+                       console.log('Enviado satisfactoriamente');
+                       console.log('$test1');
+                    }
+                       ,
+                       error:function(exception){alert('Exeption:'+exception);}
+                       
+                    
+                }); 
+             
+            });
+          });
+
+        
+        
+        </script>
+
         <script type=\'text/javascript\'>
         var tabs = $('#tabs-titles li'); //grab tabs
         var contents = $('#tabs-contents li'); //grab contents
@@ -114,9 +151,12 @@ class PluginUnsTicketLocalization extends CommonGLPI
         </script>
 
         </head>
+
         <body>
+        
+        
         <div style='text-align:left; margin-left: 30px;margin-bottom: 10px;'>
-        <label>Técnico: <select>$listaTecnicos</select></label>
+        <label>Técnico: <select id='select_tecnicos'>$listaTecnicos</select></label>
         </div>
 
         <ul id='tabs-titles'>
@@ -269,6 +309,13 @@ class PluginUnsTicketLocalization extends CommonGLPI
         </html>";
 
     }
+    
+    public static function RecibirDatos($tecnico)
+    {
+        
+        return $tecnico;
+    }
+
     public static function showMap(CommonGLPI $item, $coordenadasi, $coordenadasf)
     {
         global $DB;
