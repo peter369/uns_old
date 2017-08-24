@@ -113,23 +113,7 @@ class PluginUnsTicketLocalization extends CommonGLPI
             $('#select_tecnicos').change(function(){
                 var tecnico = document.getElementById('select_tecnicos').value;
                 //alert('Selected value is : ' + tecnico);
-        
-                
-                $.ajax({
-                    type: 'POST',
-                    url: '../plugins/uns/front/ticketlocalization.form.php',
-                    
-                    data: {var_tecnico2: tecnico},
-                    success: function(result)
-                    {
-                       console.log('Enviado satisfactoriamente');
-                       console.log('$test1');
-                    }
-                       ,
-                       error:function(exception){alert('Exeption:'+exception);}
-                       
-                    
-                }); 
+
              
             });
           });
